@@ -1,0 +1,4 @@
+- lanjutin controller authdashboard
+- routing untuk method post register
+- tambah action onsite routing post register name
+

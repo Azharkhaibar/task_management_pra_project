@@ -1,0 +1,67 @@
+<?php
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\dashboard\AuthDashboardController;
+use App\Http\Controllers\dashboard\DashboardTaskManagement;
+use App\Http\Controllers\dashboard\tugasController as DashboardTugasController;
+use App\Http\Controllers\dashboard\MemberController as DashboardMemberController;
+use App\Http\Controllers\dashboard\StatistikController;
+use App\Http\Controllers\firebase\MemberController;
+use App\Http\Controllers\firebase\taskmanagementcontroller;
+use App\Http\Controllers\firebase\tugascontroller;
+use App\Http\Controllers\firebase\userscontroller;
+use Illuminate\Support\Facades\Route;
+
+// Halaman beranda
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Rute tanpa autentikasi untuk Task Management
+Route::get('/taskmanagement', [taskmanagementcontroller::class, 'TaskManagementApp'])->name('taskmanagement.app');
+Route::post('/taskmanagement', [userscontroller::class, 'Login']);
+
+// Rute tanpa autentikasi untuk halaman tugas
+Route::get('/tugas', [TugasController::class, 'tugasPage'])->name('taskmanagement.tugas');
+Route::get('/project/{id}', [TugasController::class, 'showProject'])->name('taskmanagement.project.show');
+Route::get('/task/{id}', [TugasController::class, 'showTask'])->name('taskmanagement.tugas.show');
+Route::post('/task/{taskId}/upload', [TugasController::class, 'uploadDocument'])->name('task.uploadDocument');
+
+// Rute tanpa autentikasi untuk member
+Route::get('/member', [MemberController::class, 'MemberPage'])->name('taskmanagement.member');
+
+Route::post('/login', [AuthController::class, 'loginAuth'])->name('login.store'); // Handle login
+Route::get('/register', [userscontroller::class, 'RegisterPage'])->name('taskmanagement.register'); // Show register page
+Route::post('/register', [AuthController::class, 'registerAuth'])->name('register.store'); // Handle register
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // Logout action
+
+Route::middleware(['auth'])->group(function () {
+    Route::put('/project/{id}/update-status', [TugasController::class, 'updateStatus'])->name('project.updateStatus');
+});
+
+Route::get('/logindashboard', [AuthDashboardController::class, 'ViewDashboardLogin'])->name('dashboard.login');
+Route::post('/logindashboard', [AuthDashboardController::class, 'LoginDashboard'])->name('login.dashboardstore');
+
+
+// Rute untuk register dashboard
+Route::get('/registerdashboard', [AuthDashboardController::class, 'ViewDashboardRegister'])->name('dashboard.register');
+Route::post('/registerdashboard', [AuthDashboardController::class, 'RegisterStoreData'])->name('register.dashboard');
+
+Route::get('/dashboard', [DashboardTaskManagement::class, 'ViewDashboard'])->name('dashboard.app');
+Route::post('/dashboard', [AuthDashboardController::class, 'LogoutDashboard'])->name('dashboard.logout');
+Route::get('/dashbordmember', [DashboardMemberController::class, 'ViewMemberDashboard'])->name('dashboard.member');
+Route::get('/dashboardtugas', [DashboardTugasController::class, 'ViewTugasDashboard'])->name('dashboard.tugas');
+Route::get('/dashboardstatistik', [StatistikController::class, 'Statistik'])->name('dashboard.statistik');
+
+// member crud
+define('ROUTE_ID', '/{id}');
+
+Route::prefix('/dashboard/member')->group(function () {
+    Route::get('/', [DashboardMemberController::class, 'ViewMemberDashboard'])->name('dashboard.member');
+    Route::get(ROUTE_ID, [DashboardMemberController::class, 'show'])->name('dashboard.member.show');
+    Route::get(ROUTE_ID . '/edit', [DashboardMemberController::class, 'edit'])->name('dashboard.member.edit');
+    Route::put(ROUTE_ID, [DashboardMemberController::class, 'update'])->name('dashboard.member.update');
+    Route::delete(ROUTE_ID, [DashboardMemberController::class, 'destroy'])->name('dashboard.member.destroy');
+});
+
+
