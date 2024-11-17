@@ -39,21 +39,22 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/project/{id}/update-status', [TugasController::class, 'updateStatus'])->name('project.updateStatus');
 });
 
+// Dashboard routes
 Route::get('/logindashboard', [AuthDashboardController::class, 'ViewDashboardLogin'])->name('dashboard.login');
 Route::post('/logindashboard', [AuthDashboardController::class, 'LoginDashboard'])->name('login.dashboardstore');
-
 
 // Rute untuk register dashboard
 Route::get('/registerdashboard', [AuthDashboardController::class, 'ViewDashboardRegister'])->name('dashboard.register');
 Route::post('/registerdashboard', [AuthDashboardController::class, 'RegisterStoreData'])->name('register.dashboard');
 
+// Rute untuk dashboard
 Route::get('/dashboard', [DashboardTaskManagement::class, 'ViewDashboard'])->name('dashboard.app');
-Route::post('/dashboard', [AuthDashboardController::class, 'LogoutDashboard'])->name('dashboard.logout');
-Route::get('/dashbordmember', [DashboardMemberController::class, 'ViewMemberDashboard'])->name('dashboard.member');
-Route::get('/dashboardtugas', [DashboardTugasController::class, 'ViewTugasDashboard'])->name('dashboard.tugas');
-Route::get('/dashboardstatistik', [StatistikController::class, 'Statistik'])->name('dashboard.statistik');
+Route::post('/dashboard/logout', [AuthDashboardController::class, 'LogoutAdminDashboard'])->name('dashboard.logout'); // Logout dashboard
+Route::get('/dashboard/member', [DashboardMemberController::class, 'ViewMemberDashboard'])->name('dashboard.member');
+Route::get('/dashboard/tugas', [DashboardTugasController::class, 'ViewTugasDashboard'])->name('dashboard.tugas');
+Route::get('/dashboard/statistik', [StatistikController::class, 'Statistik'])->name('dashboard.statistik');
 
-// member crud
+// Member CRUD
 define('ROUTE_ID', '/{id}');
 
 Route::prefix('/dashboard/member')->group(function () {
@@ -64,4 +65,10 @@ Route::prefix('/dashboard/member')->group(function () {
     Route::delete(ROUTE_ID, [DashboardMemberController::class, 'destroy'])->name('dashboard.member.destroy');
 });
 
+// Tugas CRUD
+Route::prefix('/dashboard/tugas')->group(function () {
+    Route::get('/tugas', [DashboardTugasController::class, 'ViewTugasDashboard'])->name('dashboard.tugas.tugas');
+    Route::get('/tambah_tugas', [DashboardTugasController::class, 'ViewTambahTugas'])->name('dashboard.tugas.tambah');
+    Route::post('/store', [DashboardTugasController::class, 'ViewAndStoreProject'])->name('dashboard.tugas.store');
+});
 

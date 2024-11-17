@@ -32,7 +32,7 @@ class AuthDashboardController extends Controller
     }
 
 
-    public function LogoutDashboard(Request $request) {
+    public function LogoutAdminDashboard(Request $request) {
         LaravelAuth::guard('dashboard')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

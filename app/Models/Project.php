@@ -21,6 +21,6 @@ class Project extends Model
      */
     public function tugas()
     {
-        return $this->belongsToMany(Tugas::class, 'project_tugas', 'project_id', 'tugas_id');
+        return $this->hasMany(Tugas::class, 'project_id');
     }
 }
