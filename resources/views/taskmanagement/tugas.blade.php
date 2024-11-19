@@ -25,7 +25,7 @@
     <div>
         @include('components.navbar')
 
-        <div class="w-full max-w-7xl mx-auto px-4 py-6">
+        <div class="w-full max-w-7xl mx-auto px-0 py-6">
 
             <!-- Pesan untuk pengguna yang belum login -->
             @if (!Auth::check())

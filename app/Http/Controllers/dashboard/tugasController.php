@@ -9,52 +9,77 @@ use App\Models\Tugas;
 
 class tugasController extends Controller
 {
-    public function ViewTugasDashboard() {
-        return view('dashboard.tugas.tugas');
+    public function ViewTugasDashboard()
+    {
+        $allproject = Project::all();
+        return view('dashboard.tugas.tugas', compact('allproject'));
     }
 
-    public function ViewTambahTugas() {
+    public function ViewTambahTugas()
+    {
         return view('dashboard.tugas.tambah');
     }
 
-    public function ViewAndStoreProject(Request $request) {
-    // Validasi input
-    $request->validate([
-        'projectname' => 'required|string',
-        'description' => 'required|string',
-        'kategori_tugas' => 'nullable|in:web,design,maintance',
-        'taskname' => 'required|array',
-        'taskname.*' => 'required|string',
-        'description' => 'required|array', // Deskripsi tugas
-        'description.*' => 'required|string',
-    ]);
-
-    // Gabungkan semua deskripsi tugas menjadi satu string
-    $combinedDescription = implode(", ", $request->description);  // Gabungkan deskripsi tugas menjadi string
-
-    // Menyimpan data ke tabel project
-    $project = Project::create([
-        'projectname' => $request->projectname,
-        'description' => $combinedDescription,  // Pastikan disini adalah string
-        'kategori_tugas' => $request->kategori_tugas,
-        'status' => 'belum dikerjakan',  // Ganti 'active' dengan salah satu nilai enum yang valid
-    ]);
-
-    // Menyimpan tugas-tugas terkait ke tabel tugas
-    foreach ($request->taskname as $key => $taskname) {
-        Tugas::create([
-            'project_id' => $project->id,
-            'taskname' => $taskname,
-            'description' => $request->description[$key], // Mengambil deskripsi untuk setiap tugas
-        ]);
+    // navigasi ke tampilan detail project
+    public function ShowDetail($id)
+    {
+        $project = Project::find($id);
+        if (!$project) {
+            return redirect()->route('dashboard.tugas.tugas')->with('error', 'Project not found');
+        }
+        return view('dashboard.tugas.project_detail', compact('project'));
     }
 
-    return redirect()->route('dashboard.tugas.tambah')->with('success', 'Anda berhasil mengupload tugas');
-}
 
+    public function ShowDetailTugas($id)
+    {
+        $project = Tugas::find($id);
+        if ($project) {
+            return redirect()->route('dashboard.tugas.tugas')->with('error', 'not found task id');
+        }
+        return redirect()->route('dashboard.tugas.project_detail', compact('project'))->with('success', 'success found id');
+    }
 
+    public function ViewAndStoreProject(Request $request)
+    {
+        $request->validate([
+            'projectname' => 'required|string',
+            'description' => 'required|string',
+            'kategori_tugas' => 'nullable|in:web,design,maintance',
+            'taskname' => 'required|array',
+            'taskname.*' => 'required|string',
+            'description' => 'required|array',
+            'description.*' => 'required|string',
+        ]);
 
+        $combinedDescription = implode(", ", $request->description);
+        $project = Project::create([
+            'projectname' => $request->projectname,
+            'description' => $combinedDescription,
+            'kategori_tugas' => $request->kategori_tugas,
+            'status' => 'belum dikerjakan',
+        ]);
+        foreach ($request->taskname as $key => $taskname) {
+            Tugas::create([
+                'project_id' => $project->id,
+                'taskname' => $taskname,
+                'description' => $request->description[$key], // Mengambil deskripsi untuk setiap tugas
+            ]);
+        }
 
+        return redirect()->route('dashboard.tugas.tambah')->with('success', 'Anda berhasil mengupload tugas');
+    }
 
+    // public function DestroyProject($id) {
+    //     $project = Project::findOrFail($id);
+    //     $project->delete();
+    //     return redirect()->route('dashboard.tugas.tugas')->with('success', 'project dan task telah di hapus');
+    // }
 
+    public function DestroyProject(Request $request)
+    {
+        $project = Project::findOrFail($request->id);
+        $project->delete();
+        return redirect()->route('dashboard.tugas.tugas')->with('success', 'project dan task telah di hapus');
+    }
 }

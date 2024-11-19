@@ -8,105 +8,73 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased font-sans bg-slate-900">
+<body class="antialiased font-sans bg-gray-900 text-gray-300">
     @include('components.navbar')
 
-    <div class="w-full max-w-7xl mx-auto px-4 py-6">
-        <h1 class="text-5xl font-extrabold text-white mt-7">{{ $project->projectname }}</h1>
-        <p class="text-gray-400 mt-2">{{ $project->description }}</p>
-        <p class="text-sm text-gray-500">
+    <div class="w-full max-w-7xl mx-auto px-0 py-8">
+        <h1 class="text-4xl font-extrabold text-white mb-4">{{ $project->projectname }}</h1>
+        <p class="text-lg mb-4">{{ $project->description }}</p>
+        <p class="text-sm text-gray-400 mb-6">
             <span class="font-medium">Created on:</span>
             {{ \Carbon\Carbon::parse($project->created_at)->format('l, F j, Y') }}
         </p>
-        <!-- Menampilkan status project -->
-        <div class="mb-4 mt-4">
+
+        <div class="mb-6">
             @if ($project->status == 'belum dikerjakan')
-                <span class="text-red-500 font-bold text-sm">Belum Dikerjakan</span>
+                <span class="text-red-500 font-medium text-sm">Belum Dikerjakan</span>
             @elseif ($project->status == 'sedang dikerjakan')
-                <span class="text-yellow-500 font-bold text-sm">Sedang Dikerjakan</span>
+                <span class="text-yellow-500 font-medium text-sm">Sedang Dikerjakan</span>
             @else
-                <span class="text-green-500 font-bold text-sm">Selesai</span>
+                <span class="text-green-500 font-medium text-sm">Selesai</span>
             @endif
         </div>
 
-        <form action="{{ route('project.updateStatus', $project->id) }}" method="POST" class="flex items-center gap-4">
+        <form action="{{ route('project.updateStatus', $project->id) }}" method="POST" class="flex items-center gap-4 mb-6">
             @csrf
             @method('PUT')
-            <select name="status"
-                class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
-                <option value="belum dikerjakan" {{ $project->status == 'belum dikerjakan' ? 'selected' : '' }}>Belum
-                    Dikerjakan</option>
-                <option value="sedang dikerjakan" {{ $project->status == 'sedang dikerjakan' ? 'selected' : '' }}>Sedang
-                    Dikerjakan</option>
+            <select name="status" class="py-2 px-4 text-sm font-medium text-gray-700 bg-gray-800 border border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500">
+                <option value="belum dikerjakan" {{ $project->status == 'belum dikerjakan' ? 'selected' : '' }}>Belum Dikerjakan</option>
+                <option value="sedang dikerjakan" {{ $project->status == 'sedang dikerjakan' ? 'selected' : '' }}>Sedang Dikerjakan</option>
                 <option value="selesai" {{ $project->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
             </select>
-
-            <button type="submit"
-                class="px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 flex items-center gap-2">
-
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                </svg>
+            <button type="submit" class="py-2 px-6 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
+                Update
             </button>
-
         </form>
 
-        <!-- Related Tasks Section -->
-        <div class="mt-8">
-            <h2 class="text-2xl font-semibold text-white">Related Tasks</h2>
+        <div>
+            <h2 class="text-2xl font-semibold text-white mb-6">Related Tasks</h2>
             @if ($project->tugas && $project->tugas->isNotEmpty())
-                <div class="">
+                <div class="space-y-6">
                     @foreach ($project->tugas as $task)
-                        <div class="border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700">
-                            <h5 class="mb-3 mt-5 text-5xl font-bold text-white dark:text-white">{{ $task->taskname }}
-                            </h5>
-                            <p class="text-white dark:text-gray-400 mb-4">{{ $task->description }}</p>
-                            <form action="{{ route('task.uploadDocument', $task->id) }}" method="POST"
-                                enctype="multipart/form-data">
+                        <div class="bg-gray-800 border border-gray-700 rounded-lg shadow-md p-6">
+                            <h5 class="text-3xl font-bold text-white">{{ $task->taskname }}</h5>
+                            <p class="text-gray-400 mb-4">{{ $task->description }}</p>
+
+                            <form action="{{ route('task.uploadDocument', $task->id) }}" method="POST" enctype="multipart/form-data" class="mb-4">
                                 @csrf
-                                <div class="mb-4">
-                                    <label for="document" class="block text-white font-medium text-sm mb-2">Upload
-                                        Dokumen Bukti Pengumpulan</label>
-                                    <div class="relative">
-                                        <input type="file" name="document" id="document"
-                                            class="block w-full text-sm text-gray-700 bg-gray-800 border border-gray-600 rounded-lg py-2 px-3 file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                                        <span class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M11.6 4.4a3 3 0 0 0-4.2 0L4.5 6.9a3 3 0 0 0 0 4.2l3 3a3 3 0 0 0 4.2 0l2.9-2.9a3 3 0 0 0 0-4.2l-3-3zM10 5.8a1 1 0 0 1 1.4 1.4l-4.2 4.2a1 1 0 0 1-1.4-1.4l4.2-4.2z" />
-                                            </svg>
-                                        </span>
-                                    </div>
+                                <label for="document" class="block text-sm font-medium text-white mb-2">Upload Document</label>
+                                <div class="relative mb-4">
+                                    <input type="file" name="document" id="document" class="w-full text-sm text-gray-700 bg-gray-800 border border-gray-600 rounded-md py-2 px-3 focus:ring-2 focus:ring-blue-500" {{ $task->document_path ? 'disabled' : '' }}>
                                 </div>
 
-
                                 @if ($task->document_path)
-                                    <p class="text-green-500">Dokumen sudah diupload. <a
-                                            href="{{ Storage::url($task->document_path) }}" target="_blank"
-                                            class="text-blue-500">Lihat Dokumen</a></p>
+                                    <p class="text-green-500 mt-2">Dokumen sudah diupload. <a href="{{ Storage::url($task->document_path) }}" target="_blank" class="text-blue-500">Lihat Dokumen</a></p>
                                 @else
-                                    <p class="text-red-500">Dokumen belum diupload.</p>
+                                    <p class="text-red-500 mt-2">Dokumen belum diupload.</p>
+                                    <button type="submit" class="mt-4 py-2 px-6 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
+                                        Upload Dokumen
+                                    </button>
                                 @endif
-
-                                <!-- Tombol untuk mengupload dokumen -->
-                                <button type="submit"
-                                    class="px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 mt-2">
-                                    Upload Dokumen
-                                </button>
                             </form>
-
                         </div>
                     @endforeach
                 </div>
             @else
-                <p class="text-red-500">Silahkan Confirm selesai Status Task</p>
-                {{-- tambahkan lihat dokumen --}}
+                <p class="text-red-500">Silahkan konfirmasi status tugas terlebih dahulu.</p>
             @endif
         </div>
     </div>
-
 </body>
 
 </html>

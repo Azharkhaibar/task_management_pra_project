@@ -8,6 +8,7 @@
     <title>Dashboard Management</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- Menggunakan Vite jika ada manifest atau hot reload -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -28,7 +29,7 @@
             <!-- Sidebar -->
             <div class="w-1/6 bg-slate-900 text-white flex flex-col">
                 <div class="p-4 text-xl font-semibold text-center border-b border-slate-700">
-                    Dashboard
+                    Menu
                 </div>
                 <nav class="flex-1 p-4 space-y-4">
                     <ul>

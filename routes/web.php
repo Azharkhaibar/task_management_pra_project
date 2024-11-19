@@ -68,7 +68,10 @@ Route::prefix('/dashboard/member')->group(function () {
 // Tugas CRUD
 Route::prefix('/dashboard/tugas')->group(function () {
     Route::get('/tugas', [DashboardTugasController::class, 'ViewTugasDashboard'])->name('dashboard.tugas.tugas');
+    Route::get('/tugas/{id}', [DashboardTugasController::class, 'ShowDetail'])->name('dashboard.tugas.project_detail');
     Route::get('/tambah_tugas', [DashboardTugasController::class, 'ViewTambahTugas'])->name('dashboard.tugas.tambah');
     Route::post('/store', [DashboardTugasController::class, 'ViewAndStoreProject'])->name('dashboard.tugas.store');
+    Route::delete('/tugas/{id}', [DashboardTugasController::class, 'DestroyProject'])->name('dashboard.tugas.destroy');
 });
+
 

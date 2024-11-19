@@ -15,9 +15,9 @@ class StatistikController extends Controller
         $totalmember = auth::count();
         $totalproject = Project::count();
         $totalTasks = Tugas::count();
-        $tasksCompleted = Tugas::where('status', 'selesai')->count();
-        $tasksInProgress = Tugas::where('status', 'sedang dikerjakan')->count();
-        $tasksPending = Tugas::where('status', 'belum dikerjakan')->count();
+        $tasksCompleted = Project::where('status', 'selesai')->count();
+        $tasksInProgress = Project::where('status', 'sedang dikerjakan')->count();
+        $tasksPending = Project::where('status', 'belum dikerjakan')->count();
 
         return view('dashboard.statistik.statistik', compact(
             'totalmember',

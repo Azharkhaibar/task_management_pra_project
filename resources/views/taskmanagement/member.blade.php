@@ -20,7 +20,7 @@
 
 <body class="antialiased font-sans bg-slate-900">
     @include('components.navbar')
-    <div class="h-fit flex items-center px-20">
+    <div class="h-fit flex items-center px-14">
         <div class="w-1/2 h-screen ">
             <div class="w-2/3 h-fit bg-transparent m-auto p-5 mt-28 text-white rounded-md border border-slate-500">
                 <h2 class="text-3xl">Total Pelajar : </h2>
