@@ -41,7 +41,7 @@ return [
             'provider' => 'auth_provider',
         ],
         'auth' => [
-            'driver' => 'session', // Anda bisa menggunakan session atau driver lain sesuai kebutuhan
+            'driver' => 'session',
             'provider' => 'auth_provider',
         ],
         'dashboard' => [
@@ -50,8 +50,8 @@ return [
         ]
     ],
 
-    'login' => 'dashboard.login',  // urus login dashbord
-    
+    'login' => 'dashboard.login', 
+
 
     /*
     |--------------------------------------------------------------------------

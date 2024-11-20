@@ -24,7 +24,7 @@ class AuthDashboardController extends Controller
         ]);
         $user = Authdashboard::where('email', $request->email)->first();
         if ($user && Hash::check($request->password, $user->password)) {
-            LaravelAuth::guard('dashboard')->login($user); // Login dengan guard 'dashboard'
+            LaravelAuth::guard('dashboard')->login($user); 
             return redirect()->route('dashboard.app')
             ->with('message', 'Selamat datang admin');
         }
@@ -50,10 +50,10 @@ class AuthDashboardController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (LaravelAuth::guard('dashboard')->attempt($credentials)) { // Gunakan guard 'web'
+        if (LaravelAuth::guard('dashboard')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/dashboard')
-            ->with('message', 'Login berhasil, selamat datang admin');
+            ->with('message', 'Login Sukses bro, selamat datang admin');
         }
         return redirect()->route('dashboard.app')->with('message', 'Email atau password salah');
     }
@@ -67,6 +67,6 @@ class AuthDashboardController extends Controller
         ]);
         $validateRegister['password'] = Hash::make($validateRegister['password']);
         Authdashboard::create($validateRegister);
-        return redirect()->route('dashboard.login')->with('message', 'Registrasi berhasil');
+        return redirect()->route('dashboard.login')->with('message', 'Registrasi berhasil ya Bro');
     }
 }

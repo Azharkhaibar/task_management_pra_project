@@ -26,15 +26,12 @@
         @include('components.navbar')
 
         <div class="w-full max-w-7xl mx-auto px-0 py-6">
-
-            <!-- Pesan untuk pengguna yang belum login -->
             @if (!Auth::check())
                 <div class="mt-28">
                     <img class="m-auto h-28" src="{{ url('/img/padlock.png')}}" alt="locked" />
                     <h2 class="text-slate-500 text-center text-3xl mt-10">Anda belum login. Silakan login untuk mengakses halaman tugas.</h2>
                 </div>
             @else
-                <!-- Grid untuk proyek -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                     @forelse ($projects as $project)
                         <div

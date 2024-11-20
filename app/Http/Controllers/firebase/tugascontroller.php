@@ -47,25 +47,18 @@ class tugascontroller extends Controller
 
     public function uploadDocument(Request $request, $taskId)
     {
+        // validasi dan cek file
         $request->validate([
-            'document' => 'required|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048', // Validasi jenis file
+            'document' => 'required|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
         ]);
 
         $task = Tugas::findOrFail($taskId);
-
-        // Simpan file di storage
         if ($request->hasFile('document')) {
             $document = $request->file('document');
-            $path = $document->store('documents', 'public'); // Simpan di folder 'documents'
-
-            // Simpan path file di database jika perlu
+            $path = $document->store('documents', 'public');
             $task->document_path = $path;
             $task->save();
         }
-
-        // Redirect kembali ke halaman yang sama setelah dokumen berhasil diunggah
         return redirect()->route('taskmanagement.tugas.show', $taskId)->with('message', 'Dokumen berhasil diunggah!');
     }
-
-
 }

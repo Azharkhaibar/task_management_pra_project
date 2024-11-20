@@ -20,7 +20,7 @@ class tugasController extends Controller
         return view('dashboard.tugas.tambah');
     }
 
-    // navigasi ke tampilan detail project
+    // navigasitampilan detail project
     public function ShowDetail($id)
     {
         $project = Project::find($id);
@@ -63,11 +63,11 @@ class tugasController extends Controller
             Tugas::create([
                 'project_id' => $project->id,
                 'taskname' => $taskname,
-                'description' => $request->description[$key], // Mengambil deskripsi untuk setiap tugas
+                'description' => $request->description[$key],
             ]);
         }
 
-        return redirect()->route('dashboard.tugas.tambah')->with('success', 'Anda berhasil mengupload tugas');
+        return redirect()->route('dashboard.tugas.tambah')->with('success', ' berhasil mengupload tugas');
     }
 
     // public function DestroyProject($id) {

@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Rute tanpa autentikasi untuk Task Management
+// Rute tanpa autentikasi untuk taskmanagement
 Route::get('/taskmanagement', [taskmanagementcontroller::class, 'TaskManagementApp'])->name('taskmanagement.app');
 Route::post('/taskmanagement', [userscontroller::class, 'Login']);
 

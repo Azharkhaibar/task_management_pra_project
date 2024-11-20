@@ -1,5 +1,4 @@
-<!-- resources/views/dashboard/member.blade.php -->
-@extends('dashboard.app') <!-- Pastikan ini adalah layout utama -->
+@extends('dashboard.app')
 
 @section('title', 'Member Page')
 

@@ -33,7 +33,7 @@ class userscontroller extends Controller
             'password'=>$dataStore['password'],
             'instansi'=>$dataStore['instansi'],
         ]);
-        return redirect()->route('taskmanagement.app')->with('success', 'Registrasi berhasil. Tolong login.');
+        return redirect()->route('taskmanagement.app')->with('success', 'Registrasi berhasil Bro. Tolong login.');
     }
 
     public function Login(Request $request)

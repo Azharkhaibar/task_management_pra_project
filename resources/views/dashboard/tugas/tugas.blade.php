@@ -67,7 +67,7 @@
             </div>
         @empty
             <p class="col-span-3 text-center text-gray-500 dark:text-gray-300">
-                Tidak ada proyek yang ditemukan.
+                Ga Ada Proyek.
             </p>
         @endforelse
     </div>

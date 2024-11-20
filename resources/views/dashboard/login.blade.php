@@ -8,13 +8,10 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    <!-- Menggunakan Vite jika ada manifest atau hot reload -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
         <style>
-            /* Atau bisa tambahkan fallback style di sini */
         </style>
     @endif
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -23,7 +20,6 @@
 
 <body class="antialiased font-sans bg-slate-900">
     <div class="mt-24">
-        <!-- Form Login -->
         <form action="{{ route('login.dashboardstore') }}" method="POST" class="max-w-sm mx-auto p-8 bg-slate-700 rounded-md shadow-lg">
             @csrf
             <h2 class="text-white font-sans text-4xl font-bold mb-6">Login Admin</h2>

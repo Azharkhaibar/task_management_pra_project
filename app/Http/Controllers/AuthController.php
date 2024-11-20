@@ -14,7 +14,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (LaravelAuth::guard('web')->attempt($credentials)) {
             return redirect()->route('taskmanagement.app')
-                ->with('message', 'Login berhasil, selamat mengerjakan tugas');
+                ->with('message', 'Login berhasil Bro, selamat ngerjain tugas');
         }
         // cek auth
         if(!LaravelAuth::check()) {

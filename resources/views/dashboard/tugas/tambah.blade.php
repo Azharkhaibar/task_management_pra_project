@@ -2,8 +2,6 @@
 
 @section('content')
 <h1 class="text-3xl font-semibold mb-6">Tambah Proyek dan Tugas</h1>
-
-<!-- Form Input Data Proyek -->
 <div class="bg-white p-6 rounded-lg shadow-md">
     <form action="{{route('dashboard.tugas.store')}}" method="POST" class="space-y-6">
         @csrf
@@ -63,7 +61,6 @@
     </form>
 </div>
 
-<!-- JavaScript untuk Tambah Tugas -->
 <script>
     document.getElementById('add-tugas').addEventListener('click', function () {
         const tugasList = document.getElementById('tugas-list');
