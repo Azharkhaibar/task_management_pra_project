@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tugas', function (Blueprint $table) {
-            $table->string('document_path')->nullable(); // Menambahkan kolom untuk menyimpan path dokumen
+            $table->string('document_path')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('tugas', function (Blueprint $table) {
-            $table->dropColumn('document_path'); // Menghapus kolom jika rollback
+            $table->dropColumn('document_path');
         });
     }
 };

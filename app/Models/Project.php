@@ -15,10 +15,6 @@ class Project extends Model
         'status',
         'kategori_tugas',
     ];
-
-    /**
-     * Relasi One-to-Many dengan model Tugas
-     */
     public function tugas()
     {
         return $this->hasMany(Tugas::class, 'project_id');

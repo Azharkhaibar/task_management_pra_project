@@ -9,21 +9,15 @@ class Tugas extends Model
 {
     use HasFactory;
 
-    protected $table = 'tugas';  // Nama tabel di database, jika tidak sesuai dengan nama model
-
-    // Menentukan kolom yang dapat diisi mass-assignable
+    protected $table = 'tugas';
     protected $fillable = [
         'taskname',
         'description',
         'status',
         'project_id',
     ];
-
-    /**
-     * Relasi Many-to-One dengan model Project
-     */
     public function project()
     {
-        return $this->belongsTo(Project::class, 'project_id'); 
+        return $this->belongsTo(Project::class, 'project_id');
     }
 }

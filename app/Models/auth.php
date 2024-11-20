@@ -9,9 +9,7 @@ class auth extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'auth'; // Pastikan nama tabelnya sesuai
+    protected $table = 'auth';
     protected $fillable = ['name', 'instansi', 'email', 'password'];
     protected $hidden = ['password'];
-
-    // Jika ada kebutuhan tambahan, tambahkan di sini.
 }
