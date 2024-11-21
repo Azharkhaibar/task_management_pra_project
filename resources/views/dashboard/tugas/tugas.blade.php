@@ -66,9 +66,12 @@
                 </div>
             </div>
         @empty
-            <p class="col-span-3 text-center text-gray-500 dark:text-gray-300">
-                Ga Ada Proyek.
-            </p>
+            <div class="flex flex-col items-center justify-center w-96 h-96 ml-96">
+                <img src="{{ url('img/empty-box.png') }}" class="w-44 h-44 mb-4" alt="Empty Box" />
+                <p class="text-center text-gray-500 dark:text-gray-300">
+                    Belum ada Proyek Bro
+                </p>
+            </div>
         @endforelse
     </div>
 @endsection
