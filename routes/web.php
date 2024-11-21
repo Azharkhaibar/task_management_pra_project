@@ -17,11 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Rute tanpa autentikasi untuk taskmanagement
 Route::get('/taskmanagement', [taskmanagementcontroller::class, 'TaskManagementApp'])->name('taskmanagement.app');
 Route::post('/taskmanagement', [userscontroller::class, 'Login']);
 
-// Rute tanpa autentikasi untuk halaman tugas
 Route::get('/tugas', [TugasController::class, 'tugasPage'])->name('taskmanagement.tugas');
 Route::get('/project/{id}', [TugasController::class, 'showProject'])->name('taskmanagement.project.show');
 Route::get('/task/{id}', [TugasController::class, 'showTask'])->name('taskmanagement.tugas.show');
@@ -30,10 +28,10 @@ Route::post('/task/{taskId}/upload', [TugasController::class, 'uploadDocument'])
 // Rute tanpa autentikasi untuk member
 Route::get('/member', [MemberController::class, 'MemberPage'])->name('taskmanagement.member');
 
-Route::post('/login', [AuthController::class, 'loginAuth'])->name('login.store'); // Handle login
-Route::get('/register', [userscontroller::class, 'RegisterPage'])->name('taskmanagement.register'); // Show register page
-Route::post('/register', [AuthController::class, 'registerAuth'])->name('register.store'); // Handle register
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // Logout action
+Route::post('/login', [AuthController::class, 'loginAuth'])->name('login.store');
+Route::get('/register', [userscontroller::class, 'RegisterPage'])->name('taskmanagement.register');
+Route::post('/register', [AuthController::class, 'registerAuth'])->name('register.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     Route::put('/project/{id}/update-status', [TugasController::class, 'updateStatus'])->name('project.updateStatus');
