@@ -22,7 +22,7 @@
         @include('components.navbar')
     </div>
     <section class="relative w-full h-[50vh] flex justify-center items-center bg-slate-900">
-        <h1 class="text-5xl md:text-7xl font-bold text-center">Management Task Website</h1>
+        <h1 class="text-5xl md:text-6xl font-bold text-center">Management Task Website</h1>
     </section>
     <section class="w-full bg-slate-800 py-10">
         <h2 class="text-4xl font-semibold text-center mb-8">Features of Our Task Management App</h2>
@@ -40,7 +40,7 @@
                 </h2>
                 <div id="authentication-content" class="hidden" aria-labelledby="accordion-authentication">
                     <div class="px-6 py-4 text-gray-300">
-                        Fitur ini dikembangkan agar keamanan user dalam mengakses web ini meningkat dan lebih aman.
+                        Fitur ini dikembangkan agar menjaga dan meningkatkan keamanan website, stabilitas serta proteksi data pribadi user
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 </h2>
                 <div id="database-content" class="hidden" aria-labelledby="accordion-database">
                     <div class="px-6 py-4 text-gray-300">
-                        Generate detailed reports on task completion, productivity, and team performance for better insights.
+                        Menggunakan Struktur dan Relasi Database yg terbilang middle complex
                     </div>
                 </div>
             </div>
