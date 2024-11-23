@@ -64,7 +64,6 @@
                     </button>
                 </div>
                 <div class="p-4 md:p-5">
-                    <!-- Display Success or Error messages -->
                     @if (session('success'))
                         <div class="text-green-500 text-sm mb-4">{{ session('success') }}</div>
                     @elseif(session('error'))

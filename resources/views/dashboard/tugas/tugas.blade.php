@@ -51,17 +51,19 @@
                         <form method="POST" action="{{ route('dashboard.tugas.destroy', $project->id) }}"
                             onsubmit="return confirm('Are you sure?')">
                             @csrf
-                                          class="flex items-center justify-center p-2 bg-red-500 hover:bg-red-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-200">
-                                <svg xmlns="http://www.w3.org/2000/svg                  @method('DELETE')
+                            @method('DELETE')
                             <button type="submit"
-" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                class="flex items-center justify-center p-2 bg-red-500 hover:bg-red-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M8 7V4a1 1 0 011-1h6a1 1 0 011 1v3" />
                                 </svg>
                             </button>
                         </form>
-                        <a href="" class="p-2 bg-blue-600 text-white rounded-md">Edit</a>
+                        <a href="#" class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Edit
+                        </a>
                     </div>
                 </div>
             </div>

@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="w-1/2 h-screen pr-32">
-            <div class="h-fit bg-slate-800 m-auto p-5 mt-28 text-white rounded-md">
+            <div class="h-fit bg-slate-900 m-auto p-5 mt-28 text-white rounded-md">
                 <form method="GET" action="{{ route('taskmanagement.member')}}">
                     <input class="px-4 py-2 w-full mb-4 rounded-md bg-transparent" type="search" id="search"
                     placeholder="Search for members..." value="{{ request('search')}}" />

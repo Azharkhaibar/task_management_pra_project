@@ -30,12 +30,6 @@ class tugasController extends Controller
         return view('dashboard.tugas.project_detail', compact('project'));
     }
 
-    public function EditTugas(Request $request) {
-        $project = Project::findOrFail($request->id);
-        return view('')
-    }
-
-
     public function ShowDetailTugas($id)
     {
         $project = Tugas::find($id);
