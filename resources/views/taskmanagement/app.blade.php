@@ -22,10 +22,10 @@
         @include('components.navbar')
     </div>
     <section class="relative w-full h-[50vh] flex justify-center items-center bg-slate-900">
-        <h1 class="text-5xl md:text-6xl font-bold text-center">Management Task Website</h1>
+        <h1 class="text-5xl md:text-5xl font-bold text-center">Management Task Website</h1>
     </section>
-    <section class="w-full bg-slate-800 py-10">
-        <h2 class="text-4xl font-semibold text-center mb-8">Features of Our Task Management App</h2>
+    <section class="w-full bg-slate-800 py-16">
+        <h2 class="text-2xl font-semibold text-center mb-8">Features of Our Task Management App</h2>
         <div id="accordion-collapse" data-accordion="collapse" class="max-w-4xl mx-auto bg-slate-700 rounded-lg shadow-md">
             <div class="border-b border-slate-600">
                 <h2 id="accordion-authentication">
