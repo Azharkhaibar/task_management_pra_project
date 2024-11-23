@@ -80,6 +80,10 @@
             </div>
         </div>
     </section>
+
+    <div class="">
+        @include('components.footer')
+    </div>
 </body>
 
 </html>

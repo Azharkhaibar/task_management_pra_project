@@ -28,10 +28,44 @@
         <div class="w-full max-w-7xl mx-auto px-0 py-6">
             @if (!Auth::check())
                 <div class="mt-28">
-                    <img class="m-auto h-28" src="{{ url('/img/padlock.png')}}" alt="locked" />
-                    <h2 class="text-slate-500 text-center text-3xl mt-10">Anda belum login. Silakan login untuk mengakses halaman tugas.</h2>
+                    <img class="m-auto h-28" src="{{ url('/img/padlock.png') }}" alt="locked" />
+                    <h2 class="text-slate-500 text-center text-3xl mt-10">Anda belum login. Silakan login untuk
+                        mengakses halaman tugas.</h2>
                 </div>
             @else
+                <div class="w-full p-4 flex items-center bg-slate-950 rounded-md">
+                    <form class="flex gap-4 items-center">
+                        <!-- Task Category Dropdown -->
+                        <label for="category" class="text-sm font-medium text-slate-700">
+                            <select id="category" name="category"
+                                class="p-2 border border-slate-400 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Task Category</option>
+                                <option value="web">Web</option>
+                                <option value="design">Design</option>
+                                <option value="maintenance">Maintenance</option>
+                            </select>
+                        </label>
+
+                        <!-- Status Dropdown -->
+                        <label for="status" class="text-sm font-medium text-slate-700">
+                            <select id="status" name="status"
+                                class="p-2 border border-slate-400 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Status</option>
+                                <option value="not_started">Belum Dikerjakan</option>
+                                <option value="in_progress">Sedang Dikerjakan</option>
+                                <option value="completed">Selesai</option>
+                            </select>
+                        </label>
+
+                        <!-- Filter Button -->
+                        <button type="submit"
+                            class="p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
+                            Filter
+                        </button>
+                    </form>
+                </div>
+
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                     @forelse ($projects as $project)
                         <div
