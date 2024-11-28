@@ -35,12 +35,12 @@
             <div class="h-fit bg-slate-900 m-auto p-5 mt-28 text-white rounded-md">
                 <form method="GET" action="{{ route('taskmanagement.member')}}">
                     <input class="px-4 py-2 w-full mb-4 rounded-md bg-transparent" type="search" id="search"
-                    placeholder="Search for members..." value="{{ request('search')}}" />
+                    placeholder="Cari Anggota..." value="{{ request('search')}}" />
                 </form>
                 <table class="table-auto w-full">
                     <thead>
                         <tr>
-                            <th class="px-4 py-2 text-left text-4xl">Members</th>
+                            <th class="px-4 py-2 text-left text-4xl">Anggota</th>
                         </tr>
                     </thead>
                     <tbody id="memberTableBody">
