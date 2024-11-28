@@ -71,7 +71,6 @@
                     </form>
                 </div>
 
-
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                     @forelse ($projects as $project)
                         <div
@@ -84,7 +83,6 @@
                             <p class="mb-3 font-normal text-gray-400 dark:text-gray-400">
                                 {{ $project->description }}
                             </p>
-
                             <div class="mb-3">
                                 @if ($project->status == 'belum dikerjakan')
                                     <span class="text-red-500 font-bold text-sm">Belum Dikerjakan</span>
@@ -94,22 +92,20 @@
                                     <span class="text-green-500 font-bold text-sm">Selesai</span>
                                 @endif
                             </div>
-
                             <a href="{{ route('taskmanagement.project.show', $project->id) }}">
                                 <button
                                     class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
-                                    Lihat detail tugas
+                                    detail tugas
                                 </button>
                             </a>
                         </div>
-                    </div>
                     @empty
-                        <div class="flex flex-col items-center justify-center w-screen max-w-7xl h-80 mx-auto mt-20">
+                        <div class="col-span-full flex flex-col items-center justify-center w-full h-80 mx-auto mt-20">
                             <img src="{{ asset('img/empty-box.png') }}" class="h-32 mb-6" alt="No Projects Found" />
-                            <p class="text-center text-gray-500 text-lg">Tidak ada proyek yang ditemukan.</p>
+                            <p class="text-center text-gray-500 text-lg">Project Atau Tugas belum ada.</p>
                         </div>
-
                     @endforelse
+                </div>
             @endif
 
         </div>

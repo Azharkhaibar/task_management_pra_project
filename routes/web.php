@@ -67,10 +67,13 @@ Route::prefix('/dashboard/member')->group(function () {
 Route::prefix('/dashboard/tugas')->group(function () {
     Route::get('/tugas', [DashboardTugasController::class, 'ViewTugasDashboard'])->name('dashboard.tugas.tugas');
     Route::get('/tugas/{id}', [DashboardTugasController::class, 'ShowDetail'])->name('dashboard.tugas.project_detail');
+    Route::get('/edit/{id}', [DashboardTugasController::class, 'ViewEditProject'])->name('dashboard.tugas.edit');
+    Route::put('/update/{id}', [DashboardTugasController::class, 'UpdateProject'])->name('dashboard.tugas.update');
     Route::get('/tambah_tugas', [DashboardTugasController::class, 'ViewTambahTugas'])->name('dashboard.tugas.tambah');
     Route::post('/store', [DashboardTugasController::class, 'ViewAndStoreProject'])->name('dashboard.tugas.store');
     Route::delete('/tugas/{id}', [DashboardTugasController::class, 'DestroyProject'])->name('dashboard.tugas.destroy');
 });
+
 
 // proyek edit belum selesai
 

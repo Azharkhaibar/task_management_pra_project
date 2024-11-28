@@ -61,7 +61,7 @@
                                 </svg>
                             </button>
                         </form>
-                        <a href="#" class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                        <a href="{{ route('dashboard.tugas.edit', $project->id)}}" class="p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                             Edit
                         </a>
                     </div>
