@@ -32,7 +32,7 @@
                         <li>
                             <a href="{{ route('dashboard.statistik') }}"
                                 class="block p-3 text-white hover:bg-slate-700 rounded-md transition-colors duration-200">
-                                Statistik
+                                Informasi
                             </a>
                         </li>
                         <li>

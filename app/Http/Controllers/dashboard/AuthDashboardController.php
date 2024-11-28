@@ -24,11 +24,11 @@ class AuthDashboardController extends Controller
         ]);
         $user = Authdashboard::where('email', $request->email)->first();
         if ($user && Hash::check($request->password, $user->password)) {
-            LaravelAuth::guard('dashboard')->login($user); 
+            LaravelAuth::guard('dashboard')->login($user);
             return redirect()->route('dashboard.app')
             ->with('message', 'Selamat datang admin');
         }
-        return redirect()->route('dashboard.login')->with('message', 'Email atau password salah');
+        return redirect()->route('dashboard.login')->with('error', 'Email atau password salah');
     }
 
 
@@ -36,7 +36,7 @@ class AuthDashboardController extends Controller
         LaravelAuth::guard('dashboard')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('dashboard.login')->with('message', 'Logout berhasil');
+        return redirect()->route('dashboard.login')->with('success', 'Logout berhasil');
     }
 
     public function ViewDashboardRegister()
@@ -55,7 +55,7 @@ class AuthDashboardController extends Controller
             return redirect()->intended('/dashboard')
             ->with('message', 'Login Sukses bro, selamat datang admin');
         }
-        return redirect()->route('dashboard.app')->with('message', 'Email atau password salah');
+        return redirect()->route('dashboard.statistik')->with('error', 'Email atau password salah');
     }
 
     public function RegisterStoreData(Request $request)

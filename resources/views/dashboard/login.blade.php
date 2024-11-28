@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -18,38 +18,54 @@
     <script src="https://unpkg.com/heroicons@2.0.13/dist/outline.min.js"></script>
 </head>
 
-<body class="antialiased font-sans bg-slate-900">
-    <div class="mt-24">
-        <form action="{{ route('login.dashboardstore') }}" method="POST" class="max-w-sm mx-auto p-8 bg-slate-700 rounded-md shadow-lg">
+<body class="bg-slate-900 flex items-center justify-center min-h-screen antialiased font-sans">
+    <div class="bg-slate-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-6 text-center text-white">Admin Login</h2>
+
+        @if (session('success'))
+            <div class="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded-md shadow-md z-50">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="fixed top-5 right-5 bg-red-500 text-white px-4 py-2 rounded-md shadow-md z-50">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <form action="{{ route('login.dashboardstore') }}" method="POST" class="space-y-4">
             @csrf
-            <h2 class="text-white font-sans text-4xl font-bold mb-6">Login Admin</h2>
 
-            @if(session('message'))
-                <div class="mb-4 text-white bg-red-500 p-2 rounded">
-                    {{ session('message') }}
-                </div>
-            @endif
-
-            <div class="mb-6">
-                <label for="email" class="block mb-2 text-sm font-medium text-white">Your email</label>
-                <input type="email" name="email" id="email" class="bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" placeholder="email@domain.com" required />
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Your email</label>
+                <input type="email" name="email" id="email"
+                    class="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                    placeholder="email@domain.com" required>
             </div>
 
-            <div class="mb-6">
-                <label for="password" class="block mb-2 text-sm font-medium text-white">Your password</label>
-                <input type="password" name="password" id="password" class="bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3" required />
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-300 mb-1">Your password</label>
+                <input type="password" name="password" id="password"
+                    class="w-full px-4 py-2 bg-slate-700 border border-slate-600 text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
+                    required>
             </div>
 
-            <div class="flex items-start mb-6">
-                <div class="flex items-center h-5">
-                    <input id="remember" type="checkbox" name="remember" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" />
-                </div>
-                <label for="remember" class="ms-2 text-sm font-medium text-white">Remember me</label>
+            <div class="flex items-center">
+                <input id="remember" type="checkbox" name="remember"
+                    class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                <label for="remember" class="ml-2 text-sm text-gray-300">Remember me</label>
             </div>
 
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5">Submit</button>
-            <h3 class="text-white mt-5 text-center">Don't have an account? <a href="{{ route('dashboard.register')}}" class="text-white">Register</a></h3>
+            <button type="submit"
+                class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                Submit
+            </button>
         </form>
+
+        <p class="text-center text-gray-400 mt-4">
+            Don't have an account? <a href="{{ route('dashboard.register') }}" class="text-indigo-400 hover:underline">Register</a>
+        </p>
     </div>
 </body>
 
