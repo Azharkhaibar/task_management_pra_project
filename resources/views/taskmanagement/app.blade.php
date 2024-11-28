@@ -18,7 +18,7 @@
 </head>
 
 <body class="antialiased bg-slate-900 text-white font-sans">
-    <div class="w-full bg-slate-800 py-4">
+    <div class="w-full  py-4">
         @include('components.navbar')
     </div>
     <section class="relative w-full h-[50vh] flex justify-center items-center bg-slate-900">

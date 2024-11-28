@@ -10,11 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class tugascontroller extends Controller
 {
-    public function tugasPage()
+    public function tugasPage(Request $request)
     {
-        $projects = Project::with('tugas')->get();
+        $kategori_tugas = $request->input('kategori_tugas'); 
+        $status = $request->input('status');
+        $query = Project::with('tugas');
+        if ($kategori_tugas && $kategori_tugas !== 'all') {
+            $query->where('kategori_tugas', $kategori_tugas);
+        }
+        if ($status) {
+            $query->where('status', $status);
+        }
+
+        $projects = $query->get();
+        // Return data ke view
         return view('taskmanagement.tugas', compact('projects'));
     }
+
+
 
     public function showProject($id)
     {

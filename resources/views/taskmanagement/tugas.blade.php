@@ -34,30 +34,36 @@
                 </div>
             @else
                 <div class="w-full p-4 flex items-center bg-slate-950 rounded-md">
-                    <form class="flex gap-4 items-center">
-                        <!-- Task Category Dropdown -->
-                        <label for="category" class="text-sm font-medium text-slate-700">
-                            <select id="category" name="category"
+                    <form class="flex gap-4 items-center" method="GET" action="{{ route('taskmanagement.tugas') }}">
+                        <label for="kategori_tugas" class="text-sm font-medium text-slate-700">
+                            <select id="kategori_tugas" name="kategori_tugas"
                                 class="p-2 border border-slate-400 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">Task Category</option>
-                                <option value="web">Web</option>
-                                <option value="design">Design</option>
-                                <option value="maintenance">Maintenance</option>
+                                <option value="">Pilih Kategori</option>
+                                <option value="all" {{ request('kategori_tugas') == 'all' ? 'selected' : '' }}>Semua
+                                </option>
+                                <option value="web" {{ request('kategori_tugas') == 'web' ? 'selected' : '' }}>Web
+                                </option>
+                                <option value="design" {{ request('kategori_tugas') == 'design' ? 'selected' : '' }}>
+                                    Design</option>
+                                <option value="maintance"
+                                    {{ request('kategori_tugas') == 'maintance' ? 'selected' : '' }}>Maintance</option>
                             </select>
                         </label>
-
-                        <!-- Status Dropdown -->
                         <label for="status" class="text-sm font-medium text-slate-700">
                             <select id="status" name="status"
                                 class="p-2 border border-slate-400 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="">Status</option>
-                                <option value="not_started">Belum Dikerjakan</option>
-                                <option value="in_progress">Sedang Dikerjakan</option>
-                                <option value="completed">Selesai</option>
+                                <option value="">Pilih Status</option>
+                                <option value="belum dikerjakan"
+                                    {{ request('status') == 'belum dikerjakan' ? 'selected' : '' }}>Belum
+                                    Dikerjakan</option>
+                                <option value="sedang dikerjakan"
+                                    {{ request('status') == 'sedang dikerjakan' ? 'selected' : '' }}>Sedang
+                                    Dikerjakan</option>
+                                <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai
+                                </option>
                             </select>
                         </label>
 
-                        <!-- Filter Button -->
                         <button type="submit"
                             class="p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
                             Filter
@@ -96,10 +102,14 @@
                                 </button>
                             </a>
                         </div>
+                    </div>
                     @empty
-                        <p class="text-center text-white col-span-3">Tidak ada proyek yang ditemukan.</p>
+                        <div class="flex flex-col items-center justify-center w-screen max-w-7xl h-80 mx-auto mt-20">
+                            <img src="{{ asset('img/empty-box.png') }}" class="h-32 mb-6" alt="No Projects Found" />
+                            <p class="text-center text-gray-500 text-lg">Tidak ada proyek yang ditemukan.</p>
+                        </div>
+
                     @endforelse
-                </div>
             @endif
 
         </div>
