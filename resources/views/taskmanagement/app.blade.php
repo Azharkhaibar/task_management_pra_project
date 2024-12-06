@@ -18,70 +18,86 @@
 </head>
 
 <body class="antialiased bg-slate-900 text-white font-sans">
-    <div class="w-full  py-4">
+    <!-- Navbar -->
+    <div class="w-full py-4 ">
         @include('components.navbar')
     </div>
-    <section class="relative w-full h-[50vh] flex justify-center items-center bg-slate-900">
-        <h1 class="text-5xl md:text-5xl font-bold text-center">Management Task Website</h1>
+
+    <section class="relative w-full h-[50vh] flex flex-col justify-center items-center bg-slate-900 px-4 text-center">
+        <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight">Management Task Website</h1>
     </section>
-    <section class="w-full bg-slate-800 py-16">
-        <h2 class="text-2xl font-semibold text-center mb-8">Features of Our Task Management App</h2>
-        <div id="accordion-collapse" data-accordion="collapse" class="max-w-4xl mx-auto bg-slate-700 rounded-lg shadow-md">
+
+    <section class="w-full bg-slate-800 py-12 px-4">
+        <h2 class="text-lg sm:text-xl md:text-2xl font-semibold text-center mb-6">Fitur Aplikasi Manajemen Tugas Kami
+        </h2>
+        <div id="accordion-collapse" data-accordion="collapse"
+            class="max-w-3xl mx-auto bg-slate-700 rounded-lg shadow-md">
             <div class="border-b border-slate-600">
                 <h2 id="accordion-authentication">
-                    <button type="button" class="flex items-center justify-between w-full px-6 py-4 text-lg font-medium hover:bg-slate-600"
-                        data-accordion-target="#authentication-content" aria-expanded="false" aria-controls="authentication-content">
-                        <span>Authentication</span>
-                        <svg data-accordion-icon class="w-5 h-5 shrink-0 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
+                    <button type="button"
+                        class="flex items-center justify-between w-full px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base font-medium hover:bg-slate-600"
+                        data-accordion-target="#authentication-content" aria-expanded="false"
+                        aria-controls="authentication-content">
+                        <span>Otentikasi</span>
+                        <svg data-accordion-icon class="w-5 h-5 shrink-0 text-white" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                 </h2>
                 <div id="authentication-content" class="hidden" aria-labelledby="accordion-authentication">
-                    <div class="px-6 py-4 text-gray-300">
-                        Fitur ini dikembangkan agar menjaga dan meningkatkan keamanan website, stabilitas serta proteksi data pribadi user
+                    <div class="px-4 sm:px-6 py-3 text-sm sm:text-base text-gray-300">
+                        Fitur ini memastikan hanya pengguna yang terdaftar yang bisa mengakses aplikasi. Keamanan data
+                        sangat dijaga, dan semua data pribadi dilindungi dengan sistem enkripsi yang canggih.
                     </div>
                 </div>
             </div>
             <div class="border-b border-slate-600">
                 <h2 id="accordion-dashboard">
-                    <button type="button" class="flex items-center justify-between w-full px-6 py-4 text-lg font-medium hover:bg-slate-600"
-                        data-accordion-target="#dashboard-content" aria-expanded="false" aria-controls="dashboard-content">
+                    <button type="button"
+                        class="flex items-center justify-between w-full px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base font-medium hover:bg-slate-600"
+                        data-accordion-target="#dashboard-content" aria-expanded="false"
+                        aria-controls="dashboard-content">
                         <span>Dashboard</span>
-                        <svg data-accordion-icon class="w-5 h-5 shrink-0 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
+                        <svg data-accordion-icon class="w-5 h-5 shrink-0 text-white" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                 </h2>
                 <div id="dashboard-content" class="hidden" aria-labelledby="accordion-dashboard">
-                    <div class="px-6 py-4 text-gray-300">
-                        Dashboard merajuk ke manajemen task, tugas serta monitor member yang mengakses. Fitur ini dikembangkan atas tujuan pengelolaan tugas.
+                    <div class="px-4 sm:px-6 py-3 text-sm sm:text-base text-gray-300">
+                        Dashboard ini membuat pengelolaan tugas jadi lebih mudah. Kamu bisa memantau progres tugas,
+                        melihat siapa yang sedang mengerjakan apa, dan mengatur prioritas tugas yang perlu diselesaikan.
                     </div>
                 </div>
             </div>
             <div>
                 <h2 id="accordion-database">
-                    <button type="button" class="flex items-center justify-between w-full px-6 py-4 text-lg font-medium hover:bg-slate-600"
-                        data-accordion-target="#database-content" aria-expanded="false" aria-controls="database-content">
-                        <span>Database Integration</span>
-                        <svg data-accordion-icon class="w-5 h-5 shrink-0 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor">
+                    <button type="button"
+                        class="flex items-center justify-between w-full px-4 py-3 sm:px-6 sm:py-4 text-sm sm:text-base font-medium hover:bg-slate-600"
+                        data-accordion-target="#database-content" aria-expanded="false"
+                        aria-controls="database-content">
+                        <span>Integrasi Database</span>
+                        <svg data-accordion-icon class="w-5 h-5 shrink-0 text-white" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                 </h2>
                 <div id="database-content" class="hidden" aria-labelledby="accordion-database">
-                    <div class="px-6 py-4 text-gray-300">
-                        Menggunakan Struktur dan Relasi Database yg terbilang middle complex
+                    <div class="px-4 sm:px-6 py-3 text-sm sm:text-base text-gray-300">
+                        Aplikasi ini terhubung dengan database yang dirancang untuk menangani data dalam jumlah besar
+                        dengan cepat. Kamu bisa dengan mudah mengakses data yang dibutuhkan tanpa menunggu lama.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="">
+
+
+    <div class="w-full">
         @include('components.footer')
     </div>
 </body>

@@ -25,56 +25,49 @@
     <div>
         @include('components.navbar')
 
-        <div class="w-full max-w-7xl mx-auto px-0 py-6">
+        <div class="w-full max-w-7xl mx-auto px-4 py-6">
             @if (!Auth::check())
-                <div class="mt-28">
+                <div class="mt-28 text-center">
                     <img class="m-auto h-28" src="{{ url('/img/padlock.png') }}" alt="locked" />
-                    <h2 class="text-slate-500 text-center text-3xl mt-10">Anda belum login. Silakan login untuk
-                        mengakses halaman tugas.</h2>
+                    <h2 class="text-slate-500 text-3xl mt-10">Anda belum login. Silakan login untuk mengakses halaman tugas.</h2>
                 </div>
             @else
-                <div class="w-full p-4 flex items-center bg-slate-950 rounded-md">
-                    <form class="flex gap-4 items-center" method="GET" action="{{ route('taskmanagement.tugas') }}">
-                        <label for="kategori_tugas" class="text-sm font-medium text-slate-700">
+                <!-- Filter Section -->
+                <div class="w-full p-4 flex flex-col sm:flex-row gap-4 items-center bg-slate-950 rounded-md">
+                    <form class="flex flex-wrap gap-4 items-center justify-between w-full sm:w-auto" method="GET" action="{{ route('taskmanagement.tugas') }}">
+                        <label for="kategori_tugas" class="text-sm font-medium text-slate-700 flex flex-col sm:flex-row items-center gap-2">
+                            <span>Kategori Tugas:</span>
                             <select id="kategori_tugas" name="kategori_tugas"
                                 class="p-2 border border-slate-400 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <option value="">Pilih Kategori</option>
-                                <option value="all" {{ request('kategori_tugas') == 'all' ? 'selected' : '' }}>Semua
-                                </option>
-                                <option value="web" {{ request('kategori_tugas') == 'web' ? 'selected' : '' }}>Web
-                                </option>
-                                <option value="design" {{ request('kategori_tugas') == 'design' ? 'selected' : '' }}>
-                                    Design</option>
-                                <option value="maintance"
-                                    {{ request('kategori_tugas') == 'maintance' ? 'selected' : '' }}>Maintance</option>
+                                <option value="all" {{ request('kategori_tugas') == 'all' ? 'selected' : '' }}>Semua</option>
+                                <option value="web" {{ request('kategori_tugas') == 'web' ? 'selected' : '' }}>Web</option>
+                                <option value="design" {{ request('kategori_tugas') == 'design' ? 'selected' : '' }}>Design</option>
+                                <option value="maintance" {{ request('kategori_tugas') == 'maintance' ? 'selected' : '' }}>Maintance</option>
                             </select>
                         </label>
-                        <label for="status" class="text-sm font-medium text-slate-700">
+                        <label for="status" class="text-sm font-medium text-slate-700 flex flex-col sm:flex-row items-center gap-2">
+                            <span>Status:</span>
                             <select id="status" name="status"
                                 class="p-2 border border-slate-400 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 <option value="">Pilih Status</option>
-                                <option value="belum dikerjakan"
-                                    {{ request('status') == 'belum dikerjakan' ? 'selected' : '' }}>Belum
-                                    Dikerjakan</option>
-                                <option value="sedang dikerjakan"
-                                    {{ request('status') == 'sedang dikerjakan' ? 'selected' : '' }}>Sedang
-                                    Dikerjakan</option>
-                                <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai
-                                </option>
+                                <option value="belum dikerjakan" {{ request('status') == 'belum dikerjakan' ? 'selected' : '' }}>Belum Dikerjakan</option>
+                                <option value="sedang dikerjakan" {{ request('status') == 'sedang dikerjakan' ? 'selected' : '' }}>Sedang Dikerjakan</option>
+                                <option value="selesai" {{ request('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
                             </select>
                         </label>
 
                         <button type="submit"
-                            class="p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition">
+                            class="p-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 transition mt-4 sm:mt-0">
                             Filter
                         </button>
                     </form>
                 </div>
 
+                <!-- Project List -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
                     @forelse ($projects as $project)
-                        <div
-                            class="max-w-sm p-6 bg-transparent border border-gray-500 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class="max-w-sm p-6 bg-transparent border border-gray-500 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <a href="#">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-white dark:text-white">
                                     {{ $project->projectname }}
@@ -107,7 +100,6 @@
                     @endforelse
                 </div>
             @endif
-
         </div>
     </div>
 </body>

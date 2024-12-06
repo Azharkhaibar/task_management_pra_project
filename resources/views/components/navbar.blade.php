@@ -14,35 +14,65 @@
 </head>
 
 <body class="antialiased font-sans">
-     <nav class="p-4 bg-transparent shadow-md">
+    <nav class="p-4 bg-transparent shadow-md">
         <div class="flex items-center justify-between max-w-7xl mx-auto">
-            <div class="flex items-center space-x-6">
-                <div class="text-3xl font-semibold text-white">Azhar</div>
-                <div class="flex space-x-4">
-                    <a href="{{ route('taskmanagement.app') }}" class="text-lg text-white hover:text-blue-300">home</a>
-                    <a href="{{ route('taskmanagement.tugas') }}" class="text-lg text-white hover:text-blue-300 transition duration-200">Tugas</a>
-                    <a href="{{ route('taskmanagement.member')}}" class="text-lg text-white hover:text-blue-300 transition duration-200">Member</a>
-                </div>
+            <div class="text-3xl font-semibold text-white">Azhar</div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="{{ route('taskmanagement.app') }}" class="text-lg text-white hover:text-blue-300">Home</a>
+                <a href="{{ route('taskmanagement.tugas') }}" class="text-lg text-white hover:text-blue-300">Tugas</a>
+                <a href="{{ route('taskmanagement.member') }}" class="text-lg text-white hover:text-blue-300">Member</a>
             </div>
-            <div>
+            <div class="hidden md:flex items-center space-x-4">
                 @auth
                     <span class="text-white text-lg">Welcome, {{ Auth::user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
-                        <button type="submit" class="text-white text-lg hover:text-blue-300 transition duration-200 ml-4">
+                        <button type="submit" class="text-lg text-white hover:text-blue-300">
                             Logout
                         </button>
                     </form>
                 @else
                     <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                        class="flex items-center space-x-2 text-white hover:text-blue-300 transition duration-200">
-                        <i class="fas fa-user text-lg"></i>
-                        <span>Login/Sign up</span>
+                        class="text-lg text-white hover:text-blue-300">
+                        <i class="fas fa-user"></i>
+                        <span>Login/Sign Up</span>
                     </button>
                 @endauth
             </div>
+            <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="{{ route('taskmanagement.app') }}" class="block text-lg text-white hover:text-blue-300">Home</a>
+            <a href="{{ route('taskmanagement.tugas') }}" class="block text-lg text-white hover:text-blue-300">Tugas</a>
+            <a href="{{ route('taskmanagement.member') }}"
+                class="block text-lg text-white hover:text-blue-300">Member</a>
+            @auth
+                <div class="text-lg text-white">Welcome, {{ Auth::user()->name }}</div>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="block text-lg text-white hover:text-blue-300">
+                        Logout
+                    </button>
+                </form>
+            @else
+                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                    class="block text-lg text-white hover:text-blue-300">
+                    <i class="fas fa-user"></i>
+                    <span>Login/Sign Up</span>
+                </button>
+            @endauth
         </div>
     </nav>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 
     <div id="authentication-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -133,19 +163,20 @@
             </div>
         </div>
     </div>
-    <div id="toast-success" class="hidden fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg text-sm">
+    <div id="toast-success"
+        class="hidden fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg text-sm">
         Login berhasil! Selamat mengerjakan tugas.
     </div>
 
     <script>
-        @if(session('success'))
+        @if (session('success'))
             document.getElementById('toast-success').classList.remove('hidden');
             setTimeout(() => {
                 document.getElementById('toast-success').classList.add('hidden');
             }, 3000);
         @endif
 
-         @if(session('message'))
+        @if (session('message'))
             alert('{{ session('message') }}');
         @endif
     </script>
