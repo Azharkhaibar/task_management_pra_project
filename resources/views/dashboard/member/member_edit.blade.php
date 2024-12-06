@@ -1,4 +1,4 @@
-@extends('dashboard.app') <!-- Pastikan ini adalah layout utama yang digunakan di dashboard -->
+@extends('dashboard.app') <!-- ;ayout utama-->
 
 @section('title', 'Edit Member')
 

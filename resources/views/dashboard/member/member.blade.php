@@ -5,7 +5,6 @@
 @section('content')
     <h1 class="text-3xl font-semibold mb-8">Member</h1>
 
-    <!-- Total Members Section -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-white shadow-md rounded-lg p-6">
             <h2 class="text-xl font-semibold mb-2">Total Members</h2>
@@ -13,11 +12,9 @@
         </div>
     </div>
 
-    <!-- Member List Section -->
     <div class="bg-white shadow-md rounded-lg p-6 mt-7">
         <h2 class="text-xl font-semibold mb-4">Daftar Member</h2>
 
-        <!-- Table for Desktop -->
         <div class="hidden md:block">
             <table class="table-auto w-full border-collapse border border-gray-200">
                 <thead>
@@ -59,7 +56,6 @@
             </table>
         </div>
 
-        <!-- Card View for Mobile -->
         <div class="block md:hidden space-y-4">
             @foreach ($fetchmember as $index => $member)
                 <div class="bg-gray-50 border border-gray-200 rounded-lg shadow-sm p-4">

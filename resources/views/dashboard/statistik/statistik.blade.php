@@ -34,7 +34,6 @@
     <div class="bg-slate-50 mt-8 p-8">
         <h3 class="text-3xl font-semibold mb-8">Members</h3>
 
-        <!-- Tabel Members -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             @foreach ([['title' => 'Pelajar', 'total' => $totalmember, 'data' => $fetchallmember, 'columns' => ['Name', 'Instansi', 'Email']],
                       ['title' => 'Admin', 'total' => $totaladmin, 'data' => $fetchalladmin, 'columns' => ['Name', 'Email']]] as $table)
@@ -42,7 +41,6 @@
                     <h3 class="text-xl font-semibold mb-4">{{ $table['title'] }}</h3>
                     <h2 class="text-4xl font-bold text-gray-900 mb-6">{{ $table['total'] }}</h2>
 
-                    <!-- Tabel untuk Desktop -->
                     <div class="hidden md:block">
                         <table class="min-w-full table-auto border-collapse border border-gray-300">
                             <thead class="bg-slate-200">
@@ -65,8 +63,6 @@
                             </tbody>
                         </table>
                     </div>
-
-                    <!-- Kartu untuk Mobile -->
                     <div class="md:hidden space-y-4">
                         @foreach ($table['data'] as $index => $item)
                             <div class="bg-gray-50 border border-gray-300 rounded-lg shadow-sm p-4">

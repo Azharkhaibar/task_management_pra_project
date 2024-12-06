@@ -19,13 +19,16 @@
 </head>
 
 <body class="antialiased font-sans bg-slate-900">
-    <div class="text-white w-screen h-screen flex items-center">
-        <div class="w-1/2 h-full bg-slate-200 bg-cover bg-center relative"
+    <div class="text-white w-screen h-screen flex flex-col md:flex-row items-center">
+        <!-- Gambar -->
+        <div class="w-full md:w-1/2 h-64 md:h-full bg-slate-200 bg-cover bg-center relative"
             style="background-image: url('/img/cover.png');">
             <div class="absolute bg-slate-900 w-full h-full opacity-85"></div>
         </div>
-        <div class="text-white w-1/2 h-full p-6 md:p-10">
-            <div class="mx-auto h-full p-6 rounded-lg mt-10">
+
+        <!-- Formulir -->
+        <div class="w-full md:w-1/2 h-auto md:h-full p-6 md:p-10">
+            <div class="mx-auto p-6 rounded-lg">
                 <h2 class="text-3xl font-semibold text-center mb-8">Registrasi User</h2>
                 <form action="{{ route('register.store') }}" method="POST" class="space-y-8">
                     @csrf
